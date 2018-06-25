@@ -1,0 +1,10 @@
+Package: photoGPS
+Title: Fetch latitude and longitude from photo with GPS information and make a kml file based GPS points. 
+Version: 0.0.1
+Authors@R: c(person("Juan", "Du", role = c("aut", "cre"), email = "du@ibcas.ac.cn"),
+	person("Guofang", "Liu", role = c("aut", "cre"), email = "liugf@ibcas.ac.cn")
+Description: The package contains two functions. The photo2gps.pt function can be used to fetch GPS information from photos if they are available; the geo.pts2kml function can build a kml file based on points with latitude and longitude. 
+Depends: R (>= 3.3.1)
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
