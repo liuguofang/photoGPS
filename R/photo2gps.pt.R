@@ -1,12 +1,5 @@
-#' A photo2gps.pt function
-#'
-#' This function can be used to fetch GPS points from photo with geographical position. It will output photo name, latitude and longtitude. 
-#' @photo.pos the place of photos filefold.
-#' @jhead.pos the place of jhead.exe file.
-#' @examples
 
 photo2gps.pt <- function(photo.pos, jhead.pos){
-	
 	setwd(photo.pos)
 	# copy jhead.exe to photo directory.
 	file.copy(sprintf("%s/%s",jhead.pos,"jhead.exe"),getwd())
@@ -38,11 +31,11 @@ photo2gps.pt <- function(photo.pos, jhead.pos){
 	for(j in 2:3)
 		for(i in 1:nrow(res)){
 			if(!is.na(res[i,j]) & regexpr('[0-9]',res[i,j])!=-1)  {
-				pos <- gregexpr("[0-9]{1,30}",res[i,j])
+				pos <- gregexpr("[0-9.]{1,30}",res[i,j])
 				value <- as.numeric(regmatches(res[i, j], pos)[[1]]) 
 				if(length(grep("7fd",res[i,j]))==0) 
-					res[i, j] = value %*% c(1, 1/60, 1/3600, 1/100/3600) else 
-				res[i, j] = c(value[1:2],transform.fun(value[3]),value[4]) %*%  c(0, 1, 1/3600, 0)
+					res[i, j] = value %*% c(1, 1/60, 1/3600) else 
+				res[i, j] = c(value[1:2],transform.fun(value[3])) %*%  c(0, 1, 1/3600)
 			} else res[i,j]=''
 		}
 	res <- data.frame(res, stringsAsFactors=FALSE)
